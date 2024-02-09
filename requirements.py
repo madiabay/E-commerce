@@ -1,0 +1,9 @@
+asgiref==3.7.2
+Django==5.0.1
+django-cleanup==8.1.0
+django-debug-toolbar==4.2.0
+django-filter==23.5
+djangorestframework==3.14.0
+pillow==10.2.0
+pytz==2023.4
+sqlparse==0.4.4
