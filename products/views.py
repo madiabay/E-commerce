@@ -1,6 +1,7 @@
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
-from . import models, serializers
+from . import models, serializers, permissions
 from utils import mixins
 
 
@@ -15,3 +16,4 @@ class ProductViewSet(mixins.ActionSerializerMixin, ModelViewSet):
     }
     serializer_class = serializers.ProductSerializer
     queryset = models.Product.objects.all()
+    permission_classes = permissions.IsMe,
