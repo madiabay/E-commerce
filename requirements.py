@@ -3,7 +3,11 @@ Django==5.0.1
 django-cleanup==8.1.0
 django-debug-toolbar==4.2.0
 django-filter==23.5
+django-phonenumber-field==7.3.0
 djangorestframework==3.14.0
+djangorestframework-simplejwt==5.3.1
+phonenumberslite==8.13.30
 pillow==10.2.0
+PyJWT==2.8.0
 pytz==2023.4
 sqlparse==0.4.4
