@@ -8,7 +8,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 
 class CustomUserManager(BaseUserManager):
-    def create_user(self, phone_number, email, password=None):
+    def create_user(self, phone_number, email):
         """
         Creates and saves a User with the given email and password.
         """
@@ -20,7 +20,7 @@ class CustomUserManager(BaseUserManager):
             email=self.normalize_email(email),
             is_active=True)
 
-        user.set_password(password)
+        user.set_unusable_password()
         user.save(using=self._db)
         return user
 
@@ -31,7 +31,6 @@ class CustomUserManager(BaseUserManager):
         user = self.create_user(
             phone_number=phone_number,
             email=email,
-            password=password,
         )
         user.is_staff = True
         user.is_admin = True
@@ -51,3 +50,6 @@ class CustomUser(AbstractUser):
     REQUIRED_FIELDS = ['email']
 
     objects = CustomUserManager()
+
+    def __str__(self):
+        return str(self.phone_number)

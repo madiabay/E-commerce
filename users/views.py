@@ -11,10 +11,17 @@ class UserViewSet(ViewSet):
     def create_user(self, request, *args, **kwargs):
         serializer = serializers.CreateUserSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
+        data = self.user_services.create_user(data=serializer.validated_data)
+        
+        return Response(data)
 
-        self.user_services.create_user(data=serializer.validated_data)
+    def verify_user(self, request, *args, **kwargs):
+        serializer = serializers.VerifyUserSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
 
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        self.user_services.verify_user(data=serializer.validated_data)
+
+        return Response({'data': 'your account successfully created'}, status=status.HTTP_201_CREATED)
 
     def create_token(self, request, *args, **kwargs):
         serializer = serializers.CreateTokenSerializer(

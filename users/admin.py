@@ -3,9 +3,9 @@ from . import models
 
 
 class CustomUserAdmin(admin.ModelAdmin):
-    list_display = ('email',)
+    list_display = ('phone_number', 'email',)
     fieldsets = (
-        (None, {'fields': ('email', 'password')}),
+        (None, {'fields': ('phone_number', 'email')}),
     )
 
     search_fields = ('email',)

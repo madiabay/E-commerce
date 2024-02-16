@@ -16,4 +16,4 @@ class ProductViewSet(mixins.ActionSerializerMixin, ModelViewSet):
     }
     serializer_class = serializers.ProductSerializer
     queryset = models.Product.objects.all()
-    permission_classes = permissions.IsMe,
+    permission_classes = IsAuthenticated,
