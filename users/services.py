@@ -3,7 +3,9 @@ import uuid
 from time import sleep
 from typing import Protocol, OrderedDict
 
+from django.conf import settings
 from django.core.cache import cache
+from django.core.mail import send_mail
 from rest_framework_simplejwt import tokens
 from mobizon_client import MobizonClient
 
@@ -81,7 +83,13 @@ class UserServicesV1:
 
     @staticmethod
     def _send_letter_to_email(email: str) -> None:
-        print(f'send letter to {email}')
+        send_mail(
+            "WELCOME!!!",
+            "IT'S MADI'S SITE",
+            from_email=settings.EMAIL_HOST_USER,
+            recipient_list=[email],
+            fail_silently=False,
+        )
 
     @staticmethod
     def _send_sms_to_phone_number(phone_number: str, code: str) -> None:
