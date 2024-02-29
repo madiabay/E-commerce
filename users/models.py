@@ -1,5 +1,6 @@
 import uuid
 
+from . import choices
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser
 from django.db import models
@@ -45,6 +46,11 @@ class CustomUser(AbstractUser):
     username = None
     email = models.EmailField(unique=True, verbose_name=_("Email"),)
     phone_number = PhoneNumberField(unique=True)
+    user_type = models.CharField(
+        choices=choices.UserType.choices,
+        null=True, blank=True,
+        max_length=8
+    )
 
     USERNAME_FIELD = 'phone_number'
     REQUIRED_FIELDS = ['email']

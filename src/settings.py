@@ -40,10 +40,13 @@ INSTALLED_APPS = [
     'django_cleanup.apps.CleanupConfig',
     'rest_framework_simplejwt',
     'phonenumber_field',
+    'drf_yasg',
+    'djoser',
 
     # local
     'products',
     'users',
+    'seller_products',
 ]
 
 MIDDLEWARE = [

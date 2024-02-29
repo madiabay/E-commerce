@@ -1,3 +1,4 @@
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
@@ -8,6 +9,7 @@ from . import serializers, services, models
 class UserViewSet(ViewSet):
     user_services: services.UserServicesInterface = services.UserServicesV1()
 
+    @swagger_auto_schema(request_body=serializers.CreateUserSerializer)
     def create_user(self, request, *args, **kwargs):
         serializer = serializers.CreateUserSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -23,6 +25,7 @@ class UserViewSet(ViewSet):
 
         return Response({'data': 'your account successfully created'}, status=status.HTTP_201_CREATED)
 
+    @swagger_auto_schema(request_body=serializers.CreateTokenSerializer)
     def create_token(self, request, *args, **kwargs):
         serializer = serializers.CreateTokenSerializer(
             data=request.data

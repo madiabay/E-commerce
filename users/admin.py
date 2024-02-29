@@ -5,7 +5,7 @@ from . import models
 class CustomUserAdmin(admin.ModelAdmin):
     list_display = ('phone_number', 'email',)
     fieldsets = (
-        (None, {'fields': ('phone_number', 'email')}),
+        (None, {'fields': ('phone_number', 'email', 'user_type')}),
     )
 
     search_fields = ('email',)
