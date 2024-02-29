@@ -6,7 +6,7 @@ from seller_products import choices as seller_product_choices
 from . import choices
 
 
-class Order(models):
+class Order(models.Model):
     customer = models.ForeignKey(
         to=get_user_model(),
         on_delete=models.PROTECT,
@@ -26,7 +26,7 @@ class Order(models):
         ordering = '-created_at',
 
 
-class OrderItem(models):
+class OrderItem(models.Model):
     order = models.ForeignKey(
         to=Order,
         on_delete=models.PROTECT,
