@@ -17,6 +17,7 @@ class UserViewSet(ViewSet):
         
         return Response(data)
 
+    @swagger_auto_schema(request_body=serializers.VerifyUserSerializer)
     def verify_user(self, request, *args, **kwargs):
         serializer = serializers.VerifyUserSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)

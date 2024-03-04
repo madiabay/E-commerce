@@ -31,8 +31,15 @@ class OrderItem(models.Model):
         to=Order,
         on_delete=models.PROTECT,
         related_name='order_items',
+    )
+
+    seller_product = models.ForeignKey(
+        to='seller_products.SellerProduct',
+        on_delete=models.PROTECT,
+        related_name='order_items',
         limit_choices_to={'is_active': True},
     )
+
     amount = models.DecimalField(max_digits=14, decimal_places=2)
     amount_currency = models.CharField(
         max_length=3,
