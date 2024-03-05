@@ -19,12 +19,13 @@ SECRET_KEY = 'django-insecure-3n5mav6)*_hum8soive4rea0-yy)ux+wxqk8v6r(v@(bn5i-wi
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*', 'backend.example.com']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -33,7 +34,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # 3rd package
+    'corsheaders',
     'rest_framework',
+    'channels',
     'rest_framework.authtoken',
     'django_filters',
     'debug_toolbar',
@@ -53,6 +56,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -81,6 +85,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'src.wsgi.application'
+ASGI_APPLICATION = 'src.asgi.application'
 
 
 # Database
@@ -183,3 +188,17 @@ SWAGGER_SETTINGS = {
       }
    }
 }
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
+}
+
+CORS_ALLOWED_ORIGINS = (
+    "http://localhost:8000",
+    "https://example.com",
+)
