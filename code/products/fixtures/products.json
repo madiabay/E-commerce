@@ -1,0 +1,18 @@
+[
+  {
+    "model": "products.product",
+    "pk": "f4f3d1fd-6b4d-4384-b170-35a61110a40c",
+    "fields": {
+      "title": "product",
+      "body": "some info",
+      "main_image": "",
+      "is_top": false,
+      "is_active": true,
+      "data": {
+        "data": "data"
+      },
+      "created_at": "2024-03-10T13:39:15.943Z",
+      "updated_at": "2024-03-10T13:39:15.943Z"
+    }
+  }
+]

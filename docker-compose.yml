@@ -1,0 +1,57 @@
+version: '3'
+
+services:
+  ecommerce:
+    container_name: ecommerce
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - code/.env
+    depends_on:
+      - ecommerce-db
+      - ecommerce-redis
+    volumes:
+      - .:/app
+      - ecommerce_media:/media
+      - ecommerce_static:/static
+    command: /start-django
+    expose:
+      - "8000"
+    ports:
+      - "8000:8000"
+    networks:
+      - some_network
+
+  ecommerce-db:
+    container_name: ecommerce-db
+    image: postgres:14
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: qwerty123
+    volumes:
+      - ecommerce_db_data:/var/lib/postgresql/data
+    expose:
+      - "5432"
+    ports:
+      - "6543:5432"
+    networks:
+      - some_network
+
+  ecommerce-redis:
+    container_name: ecommerce-redis
+    image: redis:7
+    ports:
+      - "6738:6739"
+    networks:
+      - some_network
+
+networks:
+  some_network:
+    driver: bridge
+
+volumes:
+  ecommerce_db_data: { }
+  ecommerce_media: { }
+  ecommerce_static: { }

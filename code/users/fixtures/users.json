@@ -1,0 +1,59 @@
+[
+  {
+    "model": "users.customuser",
+    "pk": "4322d2d8-e6df-49b1-882b-1fb79a8fbb70",
+    "fields": {
+      "password": "pbkdf2_sha256$720000$qDE0b5502Ep6jUxfToVURD$q/wa4YMxzAjox4RY2lFWDVwCanXfqrAQc5pIvYp+sME=",
+      "last_login": null,
+      "is_superuser": false,
+      "first_name": "",
+      "last_name": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-03-10T13:36:34.498Z",
+      "email": "adilet@gmail.com",
+      "phone_number": "+77076461874",
+      "user_type": "Customer",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.customuser",
+    "pk": "97407a89-2682-40de-943c-89320d3f50e4",
+    "fields": {
+      "password": "pbkdf2_sha256$720000$pxikP8M6Pq9I6khU0CuEwf$f4E1r1iy0Ikqqs6orDOtbHjEFK42kXHZoCZQ/++pd7s=",
+      "last_login": null,
+      "is_superuser": false,
+      "first_name": "",
+      "last_name": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-03-10T13:37:44.040Z",
+      "email": "mama@gmail.com",
+      "phone_number": "+77077674198",
+      "user_type": "Seller",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.customuser",
+    "pk": "9d47aa49-e2fd-4bcd-8ecf-d4eb8d65973a",
+    "fields": {
+      "password": "pbkdf2_sha256$720000$RuLR7ZZ9sATZ1XufU327oR$YjU5MEdpaAc+3xC9daYxEg+f8YOZQyYhz9Z1Pr+3FUI=",
+      "last_login": "2024-03-10T12:38:34.912Z",
+      "is_superuser": true,
+      "first_name": "",
+      "last_name": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2024-03-10T12:38:07.496Z",
+      "email": "madi@gmail.com",
+      "phone_number": "+77082698956",
+      "user_type": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]
