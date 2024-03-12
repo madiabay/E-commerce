@@ -1,6 +1,11 @@
 import pytest
 from django.core.management import call_command
+from rest_framework.test import APIClient
 
+
+@pytest.fixture()
+def api_client():
+    return APIClient()
 
 @pytest.fixture()
 def load_fixtures():

@@ -6,6 +6,7 @@ from typing import Protocol, OrderedDict
 from django.conf import settings
 from django.core.cache import cache
 from django.core.mail import send_mail
+from rest_framework.exceptions import ValidationError
 from rest_framework_simplejwt import tokens
 from mobizon_client import MobizonClient
 
@@ -33,9 +34,9 @@ class UserServicesV1:
         user_data = cache.get(data['session_id'])
 
         if not user_data:
-            return
+            raise ValidationError
         if data['code'] != user_data['code']:
-            raise ValueError
+            raise ValidationError
 
         user = self.user_repos.create_user(data={
             'email': user_data['email'],
@@ -50,10 +51,10 @@ class UserServicesV1:
     def verify_token(self, data: OrderedDict) -> dict:
         session = cache.get(data['session_id'])
         if not session:
-            return
+            raise ValidationError
 
         if session['code'] != data['code']:
-            return
+            raise ValidationError
 
         user = self.user_repos.get_user(data={'phone_number': session['phone_number']})
         access = tokens.AccessToken.for_user(user=user)

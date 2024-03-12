@@ -11,5 +11,18 @@
       "created_at": "2024-03-10T13:42:01.105Z",
       "updated_at": "2024-03-10T13:42:01.106Z"
     }
+  },
+  {
+    "model": "seller_products.sellerproduct",
+    "pk": 2,
+    "fields": {
+      "product": "f3f3d1fd-6b4d-4384-b170-35a61110a40c",
+      "seller": "97407a89-2682-40de-943c-89320d3f50e4",
+      "amount": "1000.00",
+      "amount_currency": "KZT",
+      "is_active": true,
+      "created_at": "2024-03-10T13:42:01.105Z",
+      "updated_at": "2024-03-10T13:42:01.106Z"
+    }
   }
 ]

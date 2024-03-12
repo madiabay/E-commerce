@@ -3,7 +3,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
-from . import models, serializers, services
+from . import models, serializers, services, permissions
 from utils import mixins
 
 
@@ -15,11 +15,15 @@ class OrderItemViewSet(ModelViewSet):
 
 class OrderViewSet(
         mixins.ActionSerializerMixin,
+        mixins.ActionPermissionMixin,
         ModelViewSet):
     order_services: services.OrderServicesInterface = services.OrderServicesV1()
 
     ACTION_SERIALIZERS = {
         'create': serializers.CreateOrderSerializer
+    }
+    ACTION_PERMISSIONS = {
+        'create': (permissions.IsCustomer(),),
     }
     serializer_class = serializers.OrderSerializer
     queryset = order_services.get_orders()
