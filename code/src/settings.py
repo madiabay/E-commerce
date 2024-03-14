@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'users',
     'seller_products',
     'orders',
+    'payments',
 ]
 
 MIDDLEWARE = [
@@ -94,7 +95,8 @@ ASGI_APPLICATION = 'src.asgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(default='postgres://postgres:qwerty123@ecommerce-db:5432/postgres')
+    # 'default': dj_database_url.config(default='postgres://postgres:qwerty123@ecommerce-db:5432/postgres')
+    'default': dj_database_url.config(default='postgres://postgres:qwerty123@localhost:6543/postgres')
     # 'default': {
     #     'ENGINE': 'django.db.backends.sqlite3',
     #     'NAME': BASE_DIR / 'db.sqlite3',
@@ -168,7 +170,8 @@ SIMPLE_JWT = {
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://ecommerce-redis:6379/1",
+        # "LOCATION": "redis://ecommerce-redis:6379/1",
+        "LOCATION": "redis://localhost:6379/1",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
@@ -196,7 +199,8 @@ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [("ecommerce-redis", 6379)],
+            # "hosts": [("ecommerce-redis", 6379)],
+            "hosts": [("localhost", 6379)],
         },
     },
 }

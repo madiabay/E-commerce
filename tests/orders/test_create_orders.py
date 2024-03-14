@@ -3,11 +3,11 @@ from collections import OrderedDict
 import pytest
 from django.contrib.auth import get_user_model
 from django.db.models import Sum
-from django.test.client import Client
 from rest_framework import status
 
-from seller_products import models, choices
+from seller_products import models
 from orders import repos
+from payments import models as payments_models, choices as payments_choices
 import helpers
 
 
@@ -42,7 +42,10 @@ class OrderReposTest:
 
         assert total == sum([i['seller_product'].amount for i in data['order_items']])
 
-        assert all([i.amount_currency == choices.CurrencyChoices.KZT for i in order.order_items.all()])
+        bill = payments_models.Bill.objects.get(order=order)
+
+        assert bill.amount == bill.total == total
+        assert bill.status == payments_choices.BillStatusChoices.New
 
 
 @pytest.mark.django_db

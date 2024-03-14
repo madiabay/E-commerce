@@ -1,4 +1,7 @@
+from datetime import date
+
 import pytest
+from django.utils import timezone
 from rest_framework import status
 
 import helpers
@@ -59,3 +62,7 @@ class UserViewsTest(object):
         )
 
         assert response.status_code == status_code
+
+    @pytest.mark.freeze_time('2024-03-13')
+    def test_current_day(self):
+        assert timezone.now().date() == date(2024, 3, 13)

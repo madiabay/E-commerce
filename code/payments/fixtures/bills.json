@@ -1,0 +1,16 @@
+[
+{
+    "model": "payments.bill",
+    "pk": "b7de6dbc-df10-4d7b-a2fc-809193ed4c0f",
+    "fields": {
+        "order": 1,
+        "total": "10000.00",
+        "amount": "10000.00",
+        "amount_currency": "KZT",
+        "status": "New",
+        "number": "6670350971",
+        "created_at": "2024-03-14T08:52:58.041Z",
+        "updated_at": "2024-03-14T08:52:58.041Z"
+    }
+}
+]
