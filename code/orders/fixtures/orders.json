@@ -1,22 +1,22 @@
 [
-    {
-        "model": "orders.order",
-        "pk": 1,
-        "fields": {
-            "customer": "4322d2d8-e6df-49b1-882b-1fb79a8fbb70",
-            "status": "new",
-            "created_at": "2024-03-14T08:52:57.988Z",
-            "updated_at": "2024-03-14T08:52:57.988Z"
-        }
-    },
-    {
-        "model": "orders.orderitem",
-        "pk": 1,
-        "fields": {
-            "order": 1,
-            "seller_product": 1,
-            "amount": "10000.00",
-            "amount_currency": "KZT"
-        }
+{
+    "model": "orders.order",
+    "pk": 2,
+    "fields": {
+        "customer": "4322d2d8-e6df-49b1-882b-1fb79a8fbb70",
+        "status": "new",
+        "created_at": "2024-03-16T15:41:19.685Z",
+        "updated_at": "2024-03-16T15:41:19.685Z"
     }
+},
+{
+    "model": "orders.orderitem",
+    "pk": 2,
+    "fields": {
+        "order": 2,
+        "seller_product": 1,
+        "amount": "10000.00",
+        "amount_currency": "KZT"
+    }
+}
 ]

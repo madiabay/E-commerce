@@ -20,7 +20,7 @@ class BillReposV1:
             bill = models.Bill.objects.get(id=bill_id)
             bill.status = payments_choices.BillStatusChoices.Paid
             models.Transaction.objects.create(
-                order=bill.order,
+                bill=bill,
                 amount=bill.amount,
                 amount_currency=bill.amount_currency,
                 transaction_type=payments_choices.TransactionType.OK,

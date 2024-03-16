@@ -12,7 +12,7 @@ class BillViewTest:
         )
 
     @pytest.mark.parametrize('bill_id', (
-        'b7de6dbc-df10-4d7b-a2fc-809193ed4c0f',
+        'cfd4b92c-3299-402b-b69d-5a2460a1783d',
     ))
     def test_pay_bill(self, bill_id, api_client):
         response = api_client.post(f'/api/v1/bills/{bill_id}/pay/')
