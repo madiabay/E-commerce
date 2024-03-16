@@ -41,11 +41,7 @@ class Bill(models.Model):
 
 class Transaction(models.Model):
     id = models.UUIDField(default=uuid.uuid4, primary_key=True)
-    order = models.ForeignKey(
-        to='orders.Order',
-        on_delete=models.SET_NULL,
-        null=True,
-    )
+    bill = models.ForeignKey(to=Bill, on_delete=models.SET_NULL, null=True)
     amount = models.DecimalField(max_digits=14, decimal_places=2)
     amount_currency = models.CharField(
         max_length=3,
