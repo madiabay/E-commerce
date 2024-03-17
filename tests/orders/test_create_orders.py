@@ -1,8 +1,10 @@
+import datetime as dt
 from collections import OrderedDict
 
 import pytest
 from django.contrib.auth import get_user_model
 from django.db.models import Sum
+from django.utils import timezone
 from rest_framework import status
 
 from seller_products import models
@@ -23,6 +25,7 @@ class OrderReposTest:
         ('4322d2d8-e6df-49b1-882b-1fb79a8fbb70', (1,)),
         ('4322d2d8-e6df-49b1-882b-1fb79a8fbb70', (1, 2))
     ))
+    @pytest.mark.freeze_time('2020-01-01')
     def test_create_order(self, user_id, seller_product_ides):
         customer = get_user_model().objects.get(id=user_id)
         seller_products = models.SellerProduct.objects.filter(id__in=seller_product_ides)
@@ -46,6 +49,7 @@ class OrderReposTest:
 
         assert bill.amount == bill.total == total
         assert bill.status == payments_choices.BillStatusChoices.New
+        assert bill.expired_at == (timezone.now() + dt.timedelta(minutes=30))
 
 
 @pytest.mark.django_db

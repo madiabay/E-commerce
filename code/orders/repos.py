@@ -1,7 +1,9 @@
+import datetime as dt
 from typing import Protocol, OrderedDict
 
 from django.db.models import QuerySet, Sum
 from django.db import transaction
+from django.utils import timezone
 
 from . import models
 from payments import models as payments_models
@@ -38,6 +40,7 @@ class OrderReposV1:
                 amount=total,
                 amount_currency=seller_product_choices.CurrencyChoices.KZT,
                 number=payments_models.Bill.generate_number(),
+                expired_at=timezone.now() + dt.timedelta(minutes=30),
             )
 
         return order
