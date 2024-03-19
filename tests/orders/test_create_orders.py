@@ -37,15 +37,13 @@ class OrderReposTest:
         }
 
         order_repos: repos.OrderReposInterface = repos.OrderReposV1()
-        order = order_repos.create_order(data=OrderedDict(data))
+        order, bill = order_repos.create_order(data=OrderedDict(data))
 
         assert order.order_items.count() == len(data['order_items'])
 
         total = order.order_items.aggregate(total=Sum('amount'))['total']
 
         assert total == sum([i['seller_product'].amount for i in data['order_items']])
-
-        bill = payments_models.Bill.objects.get(order=order)
 
         assert bill.amount == bill.total == total
         assert bill.status == payments_choices.BillStatusChoices.New

@@ -13,7 +13,7 @@ from seller_products import choices as seller_product_choices
 class OrderReposInterface(Protocol):
 
     @staticmethod
-    def create_order(data: OrderedDict) -> models.Order: ...
+    def create_order(data: OrderedDict) -> tuple[models.Order, payments_models.Bill]: ...
 
     @staticmethod
     def get_orders() -> QuerySet[models.Order]: ...
@@ -22,7 +22,7 @@ class OrderReposInterface(Protocol):
 class OrderReposV1:
 
     @staticmethod
-    def create_order(data: OrderedDict) -> models.Order:
+    def create_order(data: OrderedDict) -> tuple[models.Order, payments_models.Bill]:
         with transaction.atomic():
             order_items = data.pop('order_items')
             order = models.Order.objects.create(**data)
@@ -43,7 +43,7 @@ class OrderReposV1:
                 expired_at=timezone.now() + dt.timedelta(minutes=30),
             )
 
-        return order
+        return order, bill
 
     @staticmethod
     def get_orders() -> QuerySet[models.Order]:
