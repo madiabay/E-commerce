@@ -66,6 +66,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'src.middleware.FirstMiddleware',
+    'src.middleware.SecondMiddleware',
+    'src.middleware.HttpxApiMiddleware',
 ]
 
 ROOT_URLCONF = 'src.urls'

@@ -19,3 +19,7 @@ class ProductViewSet(mixins.ActionSerializerMixin, ModelViewSet):
     }
     serializer_class = serializers.ProductSerializer
     permission_classes = permissions.IsAdminOrReadOnly,
+
+    def list(self, request, *args, **kwargs):
+        print(request.api.post('https://www.example.org/'))
+        return super().list(request, *args, **kwargs)
