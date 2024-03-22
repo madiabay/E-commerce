@@ -1,4 +1,8 @@
+import random
+
+from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
+from django.utils.translation import gettext as _
 
 from . import serializers, permissions, services
 from utils import mixins
@@ -21,5 +25,8 @@ class ProductViewSet(mixins.ActionSerializerMixin, ModelViewSet):
     permission_classes = permissions.IsAdminOrReadOnly,
 
     def list(self, request, *args, **kwargs):
-        # print(request.api.post('https://www.example.org/'))
-        return super().list(request, *args, **kwargs)
+        # print(request.api.post('https://www.example.org/')) # for middleware
+        # return super().list(request, *args, **kwargs) # for middleware
+        number = random.choice('1234567890')
+        output = _('Your number is {}').format(number)
+        return Response({'output': output})

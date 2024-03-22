@@ -66,6 +66,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     # 'src.middleware.FirstMiddleware',
     # 'src.middleware.SecondMiddleware',
     # 'src.middleware.HttpxApiMiddleware',
@@ -265,3 +266,7 @@ LOGGING = {
 # logging conf
 ADMINS = [('Madikeyyyyy', 'm4khmetov.4rgyn@gmail.com')]
 
+# internalization and localization conf
+LOCALE_PATHS = [
+    BASE_DIR / 'locale'
+]
