@@ -1,9 +1,10 @@
+import logging
 import uuid
 from typing import Protocol
-
 from django.db import transaction
-
 from . import models, choices as payments_choices
+
+logger = logging.getLogger('__name__')
 
 
 class BillReposInterface(Protocol):
@@ -25,3 +26,4 @@ class BillReposV1:
                 amount_currency=bill.amount_currency,
                 transaction_type=payments_choices.TransactionType.OK,
             )
+            logger.info(f'bill with id:{bill_id} succesfully paid')

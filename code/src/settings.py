@@ -66,9 +66,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
-    'src.middleware.FirstMiddleware',
-    'src.middleware.SecondMiddleware',
-    'src.middleware.HttpxApiMiddleware',
+    # 'src.middleware.FirstMiddleware',
+    # 'src.middleware.SecondMiddleware',
+    # 'src.middleware.HttpxApiMiddleware',
 ]
 
 ROOT_URLCONF = 'src.urls'
@@ -218,3 +218,50 @@ CELERY_BROKER_URL = 'redis://localhost:6379/0'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
+
+# logging conf
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "{levelname} {asctime} {module} {process:d} {thread:d} {message}",
+            "style": "{",
+        },
+    },
+    "handlers": {
+        "console": {
+            "level": "WARNING",
+            "class": "logging.StreamHandler",
+            "formatter": "verbose",
+        },
+        "mail_admins": {
+            "level": "ERROR",
+            "class": "django.utils.log.AdminEmailHandler",
+        },
+    },
+    "loggers": {
+        "payments": {
+            "handlers": ["console", "mail_admins"],
+            "level": "DEBUG",
+        },
+        "": {
+            "handlers": ["console", "mail_admins"],
+            "level": "DEBUG",
+        },
+        # "django.request": {
+        #     "handlers": ["mail_admins"],
+        #     "level": "ERROR",
+        #     "propagate": False,
+        # },
+        # "myproject.custom": {
+        #     "handlers": ["console", "mail_admins"],
+        #     "level": "INFO",
+        #     "filters": ["special"],
+        # },
+    },
+}
+
+# logging conf
+ADMINS = [('Madikeyyyyy', 'm4khmetov.4rgyn@gmail.com')]
+
