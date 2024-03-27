@@ -96,7 +96,8 @@ class UserServicesV1:
 
     @staticmethod
     def _send_sms_to_phone_number(phone_number: str, code: str) -> None:
-        logger.info(f'send sms code {code} to {phone_number}')
+        # logger.info(f'send sms code {code} to {phone_number}')
+        print(f'send sms code {code} to {phone_number}')
 
     @staticmethod
     def _mobizon(phone_number: str, code: str):
