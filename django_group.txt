@@ -1,0 +1,58 @@
+>>> from django.contrib.auth.models import Permission, Group
+>>> from users.models import CustomUser
+>>>
+>>>
+>>> user_a = CustomUser.objects.get(phone_number='+77082698956')
+>>> user_a
+<CustomUser: +77082698956>
+>>> user_c = CustomUser.objects.filter(user_type='Customer').first()
+>>> user_c
+<CustomUser: +77076461874>
+>>> user_a.get_user_permissions()
+{'payments.change_bill', 'products.add_productimages', 'orders.view_order', 'authtoken.add_token', 'users.delete_customuser', 'sessions.add_session', 'auth.delete_group', 'authtoken.delete_tokenproxy', 'seller_products.delete_sellerproduct', 'orders.delete_order', 'auth.change_group', 'payments.view_transaction', 'admin.delete_logentry', 'contenttypes.view_contenttype', 'payments.delete_bill', 'sessions.change_session', 'users.change_customuser', 'auth.delete_permission', 'payments.add_bill', 'contenttypes.delete_contenttype', 'contenttypes.change_contenttype', 'orders.view_orderitem', 'products.delete_product', 'payments.change_transaction', 'authtoken.delete_token', 'products.add_product', 'payments.view_bill', 'orders.add_order', 'authtoken.add_tokenproxy', 'seller_products.add_sellerproduct', 'sessions.delete_session', 'authtoken.view_token', 'auth.view_group', 'orders.delete_orderitem', 'users.view_customuser', 'orders.add_orderitem', 'authtoken.change_tokenproxy', 'reviews.delete_review', 'authtoken.change_token', 'products.change_product', 'users.add_customuser', 'admin.change_logentry', 'seller_products.change_sellerproduct', 'products.view_productimages', 'seller_products.view_sellerproduct', 'products.change_productimages', 'auth.view_permission', 'auth.add_group', 'auth.change_permission', 'payments.delete_transaction', 'reviews.add_review', 'orders.change_order', 'contenttypes.add_contenttype', 'payments.pay_bill', 'sessions.view_session', 'authtoken.view_tokenproxy', 'products.delete_productimages', 'admin.view_logentry', 'products.view_product', 'auth.add_permission', 'admin.add_logentry', 'orders.change_orderitem', 'reviews.change_review', 'reviews.view_review', 'payments.add_transaction'}
+>>> user_c.get_user_permissions()
+{'reviews.delete_review'}
+>>>
+>>>
+>>>
+>>> user_c.get_group_permissions()
+set()
+>>> user_c.get_group_permissions()
+set()
+>>> group = Group.objects.create(name='agents')
+>>> Group.objects.all()
+<QuerySet [<Group: agents>]>
+>>> user_c.groups.add(group)
+>>> user_c.get_group_permissions()
+set()
+>>> user_c.get_user_permissions()
+{'reviews.delete_review'}
+>>> p = Permission.objects.get(id=64)
+>>> p
+<Permission: Reviews | review | Can view review>
+>>> group.permissions.all()
+<QuerySet []>
+>>> group.permissions.add(p)
+>>> group.permissions.all()
+<QuerySet [<Permission: Reviews | review | Can view review>]>
+>>>
+>>> user_c.get_all_permissions()
+{'reviews.delete_review'}
+>>> user_c = CustomUser.objects.filter(user_type='Customer').first()
+>>> user_c.get_all_permissions()
+{'reviews.view_review', 'reviews.delete_review'}
+>>> user_c.get_group_permissions()
+{'reviews.view_review'}
+>>> type(user_c.get_group_permissions())
+<class 'set'>
+>>> user_c.get_all_permissions()
+{'reviews.view_review', 'reviews.delete_review'}
+>>> user_c.has_perm('reviews.delete_review')
+True
+>>> user_c.has_perm('reviews.view_review')
+True
+>>> user_c.has_perm('reviews.change_review')
+False
+>>> user_c.has_perm('reviews.add_review')
+False
+>>> exit()
